@@ -1,0 +1,22 @@
+name: Fetch latest anti-bot scripts
+
+on:
+  schedule:
+    - cron:  '5 * * * *' # Run every hour
+  workflow_dispatch:
+
+jobs:
+  run:
+    name: Fetch latest anti-bot scripts
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Run fetch script
+      run: ./fetch.sh
+    - name: Commit changes if files have changed
+      id: commit
+      uses: EndBug/add-and-commit@v7
+      with:
+        message: "Updated scripts"
+        add: "scripts/*"

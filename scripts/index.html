@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Testing anti-bot-scripts</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Testing anti-bot vendor scripts
+      </h1>
+      <div class="select" id="script">
+        <select>
+          <option selected="selected" disabled="disabled">- Select a script -</option>
+          <option value="meetrics">Meetrics</option>
+          <!--<option value="nike">Nike</option>-->
+        </select>
+      </div>
+      <div>
+        <code id="dump"></code>
+      </div>
+    </div>
+  </section>
+  <script>
+    function log(t) {
+      document.querySelector('#dump').innerHTML += t + '<br>';
+    }
+
+    document.querySelector('#script').addEventListener('change', (c) => {
+      const f = `${c.target.value}.js`;
+
+      fetch(f).then(r => r.text()).then(t => {
+        // Meetrics: inject log function and null data requests
+        t = t.replace('function qe(a){', 'function qe(a){log(a);');
+        t = t.replaceAll('meetrics.net', 'meetrics.xxx');
+
+        log(`Script loaded: ${f}`);
+        const s = document.createElement('script');
+        s.innerHTML = t;
+        document.head.appendChild(s);
+      });
+    });
+
+  </script>
+</body>
+
+</html>
