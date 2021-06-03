@@ -5,11 +5,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Testing anti-bot-scripts</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0/css/bulma.min.css">
 </head>
 
 <body>
-  <section class="section">
+  <section class="section has-background-info-light">
     <div class="container">
       <h1 class="title">
         Testing anti-bot vendor scripts
@@ -26,6 +26,13 @@
       </div>
     </div>
   </section>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        Source code on <a href="https://github.com/Niek/anti-bot-scripts">GitHub</a>.
+      </p>
+    </div>
+  </footer>
   <script>
     function log(t) {
       document.querySelector('#dump').innerHTML += t + '<br>';
