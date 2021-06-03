@@ -1,6 +1,7 @@
 name: Fetch latest anti-bot scripts
 
 on:
+  push:
   schedule:
     - cron:  '5 * * * *' # Run every hour
   workflow_dispatch:
